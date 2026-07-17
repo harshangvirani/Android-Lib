@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="#1A1A1A">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Gradient background card -->
+            <View
+                android:id="@+id/cardBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_blue" />
+
+            <!-- Dynamic course image cover loaded by Coil -->
+            <ImageView
+                android:id="@+id/courseImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+            <!-- Abbreviation / Title overlay to look premium -->
+            <TextView
+                android:id="@+id/courseAbbreviation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="50"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:shadowColor="#80000000"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="4" />
+
+            <!-- Diagonal "Owned" badge in top-left corner -->
+            <FrameLayout
+                android:id="@+id/ownedBadge"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="top|start"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:translationX="-20dp"
+                android:translationY="-20dp">
+
+                <View
+                    android:layout_width="100dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:rotation="-45"
+                    android:background="#997A7A7A" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:rotation="-45"
+                    android:text="Owned"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/courseTitle"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="Course Title Here"
+        android:textColor="#FFFFFF"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        tools:text="Solo Jazz Pathways: Chordal Improv" />
+
+    <TextView
+        android:id="@+id/courseEducator"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Educator"
+        android:textColor="#8A8F99"
+        android:textSize="11sp"
+        tools:text="Tim Lerch" />
+
+</LinearLayout>
