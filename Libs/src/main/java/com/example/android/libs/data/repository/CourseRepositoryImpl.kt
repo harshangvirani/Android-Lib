@@ -29,6 +29,19 @@ class CourseRepositoryImpl @Inject constructor(
      */
     override suspend fun fetchAndSaveCoursesRecursive(page: Int): Result<List<Course>> {
         return runCatching {
+            if (page == 1) {
+                // Check if data is already loaded in Room DB
+                val count = courseDao.getCoursesCount()
+                if (count > 0) {
+                    // Do not load from API; read from Room DB and return
+                    val localEntities = courseDao.getCoursesOnce()
+                    return@runCatching localEntities.map { it.toDomain() }
+                }
+
+                // If Room DB is empty, clear old records to prepare for fresh replacement data
+                courseDao.clearCourses()
+            }
+
             // Fetch courses for the current page from remote client
             val response = apiService.getCourses(page)
             val courseDtos = response.result.index
@@ -38,7 +51,7 @@ class CourseRepositoryImpl @Inject constructor(
                 // Map DTOs to Room Entities
                 val domainCourses = courseDtos.map { it.toDomain() }
                 val entities = domainCourses.map { CourseEntity.fromDomain(it) }
-                // Save to Room DB
+                // Save (and replace on conflict) to Room DB
                 courseDao.insertCourses(entities)
 
                 // Recursive call for the next page and merge the results

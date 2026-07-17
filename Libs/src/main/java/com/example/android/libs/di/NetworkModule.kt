@@ -10,6 +10,7 @@ import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import io.ktor.http.ContentType
 import javax.inject.Singleton
 
 @Module
@@ -21,11 +22,13 @@ object NetworkModule {
     fun provideHttpClient(): HttpClient {
         return HttpClient(Android) {
             install(ContentNegotiation) {
-                json(Json {
+                val jsonConfig = Json {
                     ignoreUnknownKeys = true
                     coerceInputValues = true
                     prettyPrint = true
-                })
+                }
+                json(jsonConfig)
+                json(jsonConfig, contentType = ContentType.Text.Plain)
             }
         }
     }

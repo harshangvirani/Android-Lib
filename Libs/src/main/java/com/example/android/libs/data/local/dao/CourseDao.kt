@@ -17,4 +17,10 @@ interface CourseDao {
 
     @Query("DELETE FROM courses")
     suspend fun clearCourses()
+
+    @Query("SELECT COUNT(*) FROM courses")
+    suspend fun getCoursesCount(): Int
+
+    @Query("SELECT * FROM courses ORDER BY title ASC")
+    suspend fun getCoursesOnce(): List<CourseEntity>
 }

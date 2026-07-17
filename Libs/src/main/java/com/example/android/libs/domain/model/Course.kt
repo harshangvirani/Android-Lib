@@ -1,5 +1,8 @@
 package com.example.android.libs.domain.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Course(
     val id: Int,
     val downloadId: Int,
@@ -17,5 +20,6 @@ data class Course(
     val styleTags: List<String>,
     val skillTags: List<String>,
     val seriesTags: List<String>,
-    val curriculumTags: List<String>
+    val curriculumTags: List<String>,
+    val isFavorite: Boolean
 )

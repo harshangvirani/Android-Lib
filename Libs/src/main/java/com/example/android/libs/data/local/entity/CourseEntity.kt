@@ -23,7 +23,8 @@ data class CourseEntity(
     @ColumnInfo(name = "style_tags") val styleTags: List<String>,
     @ColumnInfo(name = "skill_tags") val skillTags: List<String>,
     @ColumnInfo(name = "series_tags") val seriesTags: List<String>,
-    @ColumnInfo(name = "curriculum_tags") val curriculumTags: List<String>
+    @ColumnInfo(name = "curriculum_tags") val curriculumTags: List<String>,
+    @ColumnInfo(name = "is_favorite") val isFavorite: Boolean
 ) {
     fun toDomain(): Course {
         return Course(
@@ -43,7 +44,8 @@ data class CourseEntity(
             styleTags = styleTags,
             skillTags = skillTags,
             seriesTags = seriesTags,
-            curriculumTags = curriculumTags
+            curriculumTags = curriculumTags,
+            isFavorite = isFavorite
         )
     }
 
@@ -66,7 +68,8 @@ data class CourseEntity(
                 styleTags = course.styleTags,
                 skillTags = course.skillTags,
                 seriesTags = course.seriesTags,
-                curriculumTags = course.curriculumTags
+                curriculumTags = course.curriculumTags,
+                isFavorite = course.isFavorite
             )
         }
     }

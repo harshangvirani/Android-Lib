@@ -42,7 +42,8 @@ data class CourseDto(
             styleTags = styleTags.filter { it.isNotBlank() },
             skillTags = skillTags.filter { it.isNotBlank() },
             seriesTags = seriesTags.filter { it.isNotBlank() },
-            curriculumTags = curriculumTags.filter { it.isNotBlank() }
+            curriculumTags = curriculumTags.filter { it.isNotBlank() },
+            isFavorite = id in listOf(1023, 680, 1631)
         )
     }
 }
